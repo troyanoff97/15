@@ -1,0 +1,431 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, viewport-fit=cover"
+    />
+    <meta name="theme-color" content="#05080d" />
+    <title>15 минут. — Искусство управлять временем</title>
+    <meta
+      name="description"
+      content="Время относительно. Моё прибытие неизбежно."
+    />
+    <meta property="og:type" content="website" />
+    <meta
+      property="og:title"
+      content="15 минут. — Искусство управлять временем"
+    />
+    <meta
+      property="og:description"
+      content="Время относительно. Моё прибытие неизбежно."
+    />
+    <meta property="og:image" content="https://troyanoff97.github.io/15/assets/og-preview.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta
+      property="og:image:alt"
+      content="15 МИНУТ. Портрет на фоне золотых часов"
+    />
+    <link rel="icon" href="./assets/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="./chronos.css" />
+    <script defer src="./chronos.js"></script>
+  </head>
+  <body>
+    <header class="top" id="top">
+      <a class="brand" href="#top"
+        ><span class="mark" aria-hidden="true">◴</span
+        ><span
+          >CHRONOS<span class="brand-sub">THE ARRIVAL EXPERIENCE</span></span
+        ></a
+      >
+      <nav aria-label="Разделы">
+        <a href="#story">Презентация</a><a href="#mission">Центр управления</a>
+      </nav>
+      <button class="sound" data-action="sound" aria-pressed="false">
+        <span aria-hidden="true">◖))</span>
+        <span id="sound-label">Звук выкл.</span>
+      </button>
+    </header>
+    <main>
+      <section class="hero" aria-labelledby="hero-title">
+        <div class="scene" aria-hidden="true">
+          <canvas id="stars"></canvas>
+          <div class="diagram">
+            <svg id="dial" viewBox="0 0 700 700"></svg>
+            <div class="orbit-motion"><i></i><i></i><i></i></div>
+          </div>
+          <div class="star-trails"><i></i><i></i><i></i></div>
+          <img
+            class="portrait"
+            src="./assets/hero-chronos.webp"
+            width="1536"
+            height="1024"
+            alt=""
+          />
+          <div class="foreground"></div>
+          <span class="scene-glint"></span
+          ><span class="scene-meta">FIG. 01 / ВРЕМЕННА́Я ЛИНИЯ</span>
+        </div>
+        <div class="intro">
+          <p class="eyebrow">
+            <i></i> CHRONOS ENGINE 3.0 <span>· ARRIVAL IN PROGRESS</span>
+          </p>
+          <p id="personal" hidden></p>
+          <h1 id="hero-title">
+            <span>БУДУ ЧЕРЕЗ</span
+            ><strong
+              ><span id="promise">15</span> МИНУТ<span class="period"
+                >.</span
+              ></strong
+            >
+          </h1>
+          <p class="subhead">«Я уже практически там.»</p>
+          <p class="thesis">Время относительно.<br />Моё прибытие неизбежно.</p>
+          <div class="actions">
+            <a class="primary" href="#mission"
+              ><span aria-hidden="true">◎</span> Отслеживать прибытие</a
+            ><button data-action="check">Ты точно уже вышел?</button
+            ><a class="quiet" href="#waiting">Запустить ожидание</a>
+          </div>
+          <p class="fine">
+            Расчётное время прибытия не является публичной офертой.
+          </p>
+        </div>
+        <div class="telemetry" id="waiting" tabindex="-1">
+          <div>
+            <span class="eyebrow">ДО ПРИБЫТИЯ</span
+            ><button
+              id="timer"
+              data-action="timer"
+              aria-label="Таймер ожидания"
+            >
+              15:00
+            </button>
+            <span class="timer-fragments" aria-hidden="true"></span>
+          </div>
+          <div>
+            <span class="eyebrow">ВРЕМЕННОЙ ЦИКЛ</span
+            ><strong id="cycle">01</strong>
+          </div>
+          <div class="current">
+            <span class="eyebrow">СТАТУС СИМУЛЯЦИИ</span
+            ><strong id="hero-status">Прибытие неизбежно</strong>
+          </div>
+          <button class="cinema" data-action="film">
+            <span aria-hidden="true">▷</span> Смотреть фильм
+            <small>36 СЕК</small>
+          </button>
+        </div>
+      </section>
+      <section class="act story" id="story">
+        <div class="chapter">
+          <span>01 / 06</span><span>Время — иллюзия</span>
+        </div>
+        <div class="story-text">
+          <p>Человечество тысячелетиями пыталось понять время.</p>
+          <p>Мы научились измерять секунды.</p>
+          <p>Мы научились предсказывать будущее.</p>
+          <p>Но некоторые загадки остались нерешёнными.</p>
+          <h2>Например,<br />когда я приду.</h2>
+          <button data-action="film">▷ Смотреть фильм</button>
+        </div>
+      </section>
+      <section class="act relativity">
+        <div class="chapter">
+          <span>02 / 06</span><span>Переосмысление времени</span>
+        </div>
+        <div class="relativity-art" aria-hidden="true">
+          <span>40</span><i></i><i></i>
+        </div>
+        <div class="relativity-copy">
+          <h2>Для вас прошло<br /><em>40 минут.</em></h2>
+          <p>Для меня — практически ничего.</p>
+          <p>Это не опоздание.<br />Это разница систем отсчёта.</p>
+          <p class="caption">Эйнштейн бы понял.</p>
+        </div>
+      </section>
+      <section class="act engineering">
+        <div class="chapter">
+          <span>03 / 06</span><span>Инженерия прибытия</span>
+        </div>
+        <h2>Момент появления.</h2>
+        <dl class="metrics">
+          <div>
+            <dt>15</dt>
+            <dd>Стандартное время прибытия</dd>
+          </div>
+          <div>
+            <dt>100%</dt>
+            <dd>Уверенности в том, что я скоро буду</dd>
+          </div>
+          <div>
+            <dt>0%</dt>
+            <dd>Гарантии соблюдения первоначального прогноза</dd>
+          </div>
+          <div>
+            <dt>∞</dt>
+            <dd>Возможных временных циклов</dd>
+          </div>
+          <div>
+            <dt>99,9%</dt>
+            <dd>Моральной готовности выйти</dd>
+          </div>
+          <div>
+            <dt>1</dt>
+            <dd>Человек, которого всё ещё ждут</dd>
+          </div>
+        </dl>
+        <p class="caption">
+          «Мы не опаздываем. Мы оптимизируем момент появления.»
+        </p>
+      </section>
+      <section class="act technology">
+        <div class="chapter">
+          <span>04 / 06</span><span>Технологии нового поколения</span>
+        </div>
+        <div class="tech-grid">
+          <div class="tech-choices" aria-label="Технологии"></div>
+          <div class="tech-display">
+            <div class="core" aria-hidden="true">
+              <i></i><i></i><i></i><b>15</b>
+            </div>
+            <div>
+              <h2 id="tech-title">CHRONOS ENGINE</h2>
+              <p id="tech-description" aria-live="polite"></p>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="act mission" id="mission">
+        <div class="chapter">
+          <span>05 / 06</span><span>Центр управления прибытием</span>
+        </div>
+        <h2>Траектория прибытия.</h2>
+        <p class="caption">Шуточная симуляция без геолокации</p>
+        <div class="mission-grid">
+          <div class="map">
+            <svg
+              viewBox="0 0 640 370"
+              role="img"
+              aria-label="Условная орбитальная траектория"
+            >
+              <defs>
+                <pattern
+                  id="grid"
+                  width="32"
+                  height="32"
+                  patternUnits="userSpaceOnUse"
+                >
+                  <path
+                    d="M32 0H0V32"
+                    fill="none"
+                    stroke="#77b8e8"
+                    stroke-opacity=".15"
+                  />
+                </pattern>
+              </defs>
+              <rect width="640" height="370" fill="url(#grid)" />
+              <g fill="none" stroke="#77b8e8" stroke-opacity=".28">
+                <ellipse
+                  cx="320"
+                  cy="185"
+                  rx="250"
+                  ry="88"
+                  transform="rotate(-17 320 185)"
+                />
+                <ellipse
+                  cx="320"
+                  cy="185"
+                  rx="190"
+                  ry="120"
+                  transform="rotate(25 320 185)"
+                />
+                <circle cx="320" cy="185" r="64" />
+                <circle cx="320" cy="185" r="105" stroke-dasharray="2 6" />
+                <path
+                  d="M89 276L240 190 320 185 433 96 573 60"
+                  stroke="#eab45e"
+                  stroke-dasharray="4 7"
+                />
+              </g>
+              <path
+                class="route-signal"
+                pathLength="100"
+                d="M89 276L240 190 320 185 433 96 573 60"
+                fill="none"
+              />
+              <circle class="map-pulse" cx="320" cy="185" r="18" fill="none" />
+              <g fill="#77b8e8">
+                <circle cx="89" cy="276" r="4" />
+                <circle cx="433" cy="96" r="4" />
+                <circle cx="573" cy="60" r="4" />
+              </g>
+              <g fill="#ffda91">
+                <circle r="6" class="route-marker">
+                  <animateMotion
+                    dur="12s"
+                    repeatCount="indefinite"
+                    path="M89 276L240 190 320 185 433 96 573 60"
+                  />
+                </circle>
+                <circle cx="320" cy="185" r="5" />
+              </g>
+            </svg>
+            <span>ОРБИТАЛЬНАЯ СЕТЬ · МОДЕЛЬ</span>
+          </div>
+          <div class="mission-data">
+            <ol id="status-list"></ol>
+            <dl class="readings">
+              <div>
+                <dt>Моральная готовность</dt>
+                <dd>100%</dd>
+              </div>
+              <div>
+                <dt>Физическая готовность</dt>
+                <dd>37%</dd>
+              </div>
+              <div>
+                <dt>Уверенность в прогнозе</dt>
+                <dd>99%</dd>
+              </div>
+              <div>
+                <dt>Достоверность прогноза</dt>
+                <dd>уточняется</dd>
+              </div>
+            </dl>
+          </div>
+        </div>
+        <div class="actions">
+          <button data-action="where">Где ты?</button
+          ><button data-action="taxi">Вызвать такси</button
+          ><button data-action="boost">Ускорить прибытие</button>
+        </div>
+        <div class="excuse">
+          <button class="primary" data-action="excuse">
+            Почему ты опаздываешь?
+          </button>
+          <p id="excuse" role="status"></p>
+        </div>
+      </section>
+      <section class="act finale" id="finale">
+        <div class="chapter"><span>06 / 06</span><span>Прибытие</span></div>
+        <canvas id="tunnel" aria-hidden="true"></canvas>
+        <img
+          src="./assets/hero-chronos.webp"
+          width="1536"
+          height="1024"
+          loading="lazy"
+          alt=""
+        />
+        <div class="final-copy">
+          <p>
+            Сквозь пространство.<br />Сквозь время.<br />Сквозь непредвиденные
+            обстоятельства.
+          </p>
+          <p>Я обязательно появлюсь.</p>
+          <h2>ЧЕРЕЗ 15 МИНУТ.</h2>
+          <p>Некоторые вещи стоят ожидания.</p>
+          <div class="actions">
+            <a class="primary" href="#waiting">Продолжить ожидание</a
+            ><button data-action="estimate">Уточнить время прибытия</button
+            ><button data-action="share">Поделиться ожиданием</button>
+          </div>
+        </div>
+      </section>
+    </main>
+    <footer>
+      <nav class="contact-links" aria-label="Контакты">
+        <a href="https://t.me/nillks_rss" aria-label="Telegram @nillks_rss"
+          >Telegram</a
+        >
+        <a
+          href="https://wa.me/77055837474"
+          aria-label="WhatsApp +7 705 583 74 74"
+          >WhatsApp</a
+        >
+        <a
+          href="mailto:daniil.troyanovvv@gmail.com"
+          aria-label="Почта daniil.troyanovvv@gmail.com"
+          >Email</a
+        >
+      </nav>
+      <span>Designed in Kazakhstan.</span><span>Arriving eventually.</span
+      ><label
+        >Громкость
+        <input type="range" id="volume" min="0" max="1" step=".05" value=".55"
+      /></label>
+    </footer>
+    <dialog id="modal" aria-labelledby="modal-title">
+      <form method="dialog" class="close-form">
+        <button aria-label="Закрыть">×</button>
+      </form>
+      <div id="modal-body"></div>
+    </dialog>
+    <template id="share-template"
+      ><h2 id="modal-title">Поделиться ожиданием</h2>
+      <form id="link-form">
+        <label
+          >Исходный вопрос<input
+            name="q"
+            maxlength="180"
+            placeholder="Ты скоро?" /></label
+        ><label>Имя ожидающего<input name="name" maxlength="60" /></label
+        ><label
+          >Начальное время, мин.<input
+            name="minutes"
+            type="number"
+            value="15"
+            min="1"
+            max="120"
+            required /></label
+        ><label>Персональная ссылка<input id="share-url" readonly /></label>
+        <div class="actions">
+          <button type="button" data-action="copy">Копировать</button
+          ><button type="button" class="primary" data-action="native-share">
+            Поделиться
+          </button>
+        </div>
+      </form></template
+    >
+    <template id="universe-template"
+      ><h2 id="modal-title">Наблюдаемая Вселенная</h2>
+      <div class="universe" aria-hidden="true"><span></span></div>
+      <p>Где-то здесь.</p></template
+    >
+    <template id="taxi-template"
+      ><h2 id="modal-title">Такси вызвано</h2>
+      <div class="taxi-art" aria-hidden="true">
+        <svg viewBox="0 0 120 70">
+          <path
+            d="M4 35H22L44 18H82L109 35 82 52H44L22 35M46 30H76L83 35 76 40H46Z"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          />
+          <path d="M3 25H18M3 45H18" stroke="currentColor" stroke-width="2" />
+        </svg>
+      </div>
+      <p>Корабль покинул орбиту. Осталось 15 минут.</p></template
+    >
+    <dialog id="film" aria-label="Кинематографическая презентация">
+      <div class="film-surface">
+        <div class="film-orbits" aria-hidden="true"><i></i><i></i><i></i></div>
+        <canvas id="film-stars" aria-hidden="true"></canvas
+        ><button data-action="skip" class="skip">
+          Пропустить <span aria-hidden="true">×</span></button
+        ><img src="./assets/hero-chronos.webp" alt="" />
+        <div class="film-text" id="film-text"></div>
+        <progress value="0" max="36" aria-label="Ход презентации"></progress>
+      </div>
+    </dialog>
+    <div id="notice" role="status" aria-live="polite" hidden></div>
+    <audio
+      id="theme"
+      preload="none"
+      loop
+      src="./assets/chronos-theme.mp3"
+    ></audio>
+  </body>
+</html>
