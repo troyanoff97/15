@@ -287,6 +287,8 @@ function notify(message, time = 4200) {
 const theme = $("#theme");
 let soundEnabled = read("chronos.sound") !== false;
 let audioUnlocked = false;
+let audioPrepared = false;
+let playAttempt = 0;
 let audioUnavailable = false;
 const storedVolume = read("chronos.volume");
 if (typeof storedVolume === "number") $("#volume").value = storedVolume;
@@ -295,6 +297,7 @@ let fade,
   warpUntil = 0;
 let audioContext, musicGain, effectGain;
 function prepareAudio() {
+  audioPrepared = true;
   if (audioContext) {
     audioContext.resume().catch(() => {});
     return;
@@ -328,7 +331,7 @@ function setEffectVolume(value) {
   else if (effect) effect.volume = value;
 }
 function soundLabel() {
-  const active = soundEnabled && audioUnlocked && !audioUnavailable;
+  const active = soundEnabled && !audioUnavailable;
   $("[data-action=sound]").setAttribute("aria-pressed", active);
   $("#sound-label").textContent = audioUnavailable
     ? "Звук недоступен"
@@ -336,11 +339,11 @@ function soundLabel() {
       ? "Звук вкл."
       : "Звук выкл.";
 }
-function syncAudio() {
+function syncAudio(tryAutoplay = false) {
   cancelAnimationFrame(fade);
   const target =
     soundEnabled &&
-    audioUnlocked &&
+    (audioUnlocked || tryAutoplay) &&
     !audioUnavailable &&
     !document.hidden &&
     anomalyPhase < 0
@@ -348,11 +351,18 @@ function syncAudio() {
       : 0;
   if (target && theme.paused) {
     setMusicVolume(0);
-    theme.play().catch(() => {
-      if (theme.error) audioUnavailable = true;
-      else audioUnlocked = false;
-      soundLabel();
-    });
+    const attempt = ++playAttempt;
+    theme.play().then(
+      () => {
+        if (attempt === playAttempt) audioUnlocked = true;
+      },
+      (error) => {
+        if (attempt !== playAttempt || error.name === "AbortError") return;
+        if (theme.error) audioUnavailable = true;
+        else audioUnlocked = false;
+        soundLabel();
+      },
+    );
   }
   if (document.hidden) {
     theme.pause();
@@ -391,9 +401,11 @@ function unlock(event) {
   if (
     !event.isTrusted ||
     event.target.closest("[data-action=sound]") ||
-    audioUnlocked
+    !soundEnabled ||
+    (audioUnlocked && audioPrepared)
   )
     return;
+  playAttempt++;
   audioUnlocked = true;
   prepareAudio();
   syncAudio();
@@ -636,11 +648,13 @@ let checks = 0,
   timerHits = 0;
 const actions = {
   sound() {
-    soundEnabled = audioUnlocked ? !soundEnabled : true;
-    audioUnlocked = true;
+    playAttempt++;
+    soundEnabled = !soundEnabled;
     save("chronos.sound", soundEnabled);
-    if (soundEnabled) prepareAudio();
-    else effect?.pause();
+    if (soundEnabled) {
+      audioUnlocked = true;
+      prepareAudio();
+    } else effect?.pause();
     syncAudio();
     soundLabel();
   },
@@ -1057,4 +1071,5 @@ document.addEventListener("visibilitychange", () => {
 });
 soundLabel();
 tick();
+syncAudio(true);
 tickHandle = setInterval(tick, 200);
